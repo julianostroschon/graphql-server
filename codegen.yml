@@ -8,6 +8,13 @@ generates:
       - "typescript-resolvers"
     config:
       useIndexSignature: true
-      contextType: "../context#MyContext"
+    presetConfig:
+      typesPluginsConfig:
+        contextType: "../context#MyContext"
+  
+  ./src/generated/knex-types.ts:
+    plugins:
+      - ./src/codegen/knex-types-plugin.js
+
 hooks:
   afterOneFileWrite: ['prettier --write "src/generated/**/*.ts"']

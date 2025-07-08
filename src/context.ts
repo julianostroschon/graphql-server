@@ -1,8 +1,20 @@
-export interface MyContext {
-  // Aqui você pode adicionar propriedades que estarão disponíveis em todos os resolvers
-  // Por exemplo: dataSources, autenticação, etc.
+
+import { Knex } from 'knex';
+import database from './infra/database/connection';
+import { User } from './infra/database/types';
+
+// Renomeando para MyContext para compatibilidade direta com o codegen
+interface MyContext {
+  database: Knex;
+  user?: User | null; // Usuário autenticado (opcional)
 }
 
-export const createContext = async (): Promise<MyContext> => {
-  return {};
+const createContext = async (): Promise<MyContext> => {
+  return {
+    database,
+    // O usuário será adicionado pelo middleware de autenticação quando implementado
+    user: null,
+  };
 };
+
+export { createContext, type MyContext };

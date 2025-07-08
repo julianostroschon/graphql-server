@@ -11,7 +11,7 @@ Este é um servidor GraphQL typesafe que utiliza codegen para gerar tipos TypeSc
 
 ## Requisitos
 
-- Node.js (versão 14 ou superior)
+- Node.js (versão 20 ou superior)
 - npm ou yarn
 
 ## Instalação

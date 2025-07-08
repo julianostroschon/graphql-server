@@ -4,5 +4,22 @@ type Mutation {
 
 type Query {
   _empty: String
+  me: User
   ping: String!
+  userGet(id: ID!): User
+  usersLoad: [User!]!
+}
+
+type User {
+  createdAt: String!
+  email: String!
+  id: ID!
+  role: UserRole!
+  updatedAt: String!
+  username: String!
+}
+
+enum UserRole {
+  ADMIN
+  USER
 }

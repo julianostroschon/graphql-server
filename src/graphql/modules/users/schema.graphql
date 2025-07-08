@@ -1,0 +1,19 @@
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  role: UserRole!
+  createdAt: String!
+  updatedAt: String!
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+extend type Query {
+  usersLoad: [User!]!
+  userGet(id: ID!): User
+  me: User
+}

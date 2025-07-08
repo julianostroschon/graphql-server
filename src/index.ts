@@ -1,13 +1,13 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
-import { createContext, MyContext } from './context';
+import { type Context, createContext } from './context';
 import { resolvers } from './graphql/resolvers';
 import { typeDefs } from './graphql/typedefs';
 
 async function startApolloServer() {
 
   // Configuração do Apollo Server
-  const server = new ApolloServer<MyContext>({
+  const server = new ApolloServer<Context>({
     resolvers,
     typeDefs,
   });
