@@ -1,11 +1,10 @@
 type Mutation {
-  _empty: String
+  _empty: String!
 }
 
 type Query {
-  _empty: String
   me: User
-  ping: String!
+  ping: String
   userGet(id: ID!): User
   usersLoad: [User!]!
 }

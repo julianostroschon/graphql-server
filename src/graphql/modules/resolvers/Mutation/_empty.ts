@@ -4,5 +4,5 @@ export const _empty: NonNullable<MutationResolvers["_empty"]> = async (
   _arg,
   _ctx,
 ) => {
-  /* Implement Mutation._empty resolver logic here */
+  return "This is an empty mutation resolver. Implement your logic here.";
 };
