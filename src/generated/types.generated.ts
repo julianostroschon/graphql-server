@@ -26,6 +26,7 @@ export type Mutation = {
 
 export type Query = {
   __typename?: 'Query';
+  _empty: Scalars['String']['output'];
   me?: Maybe<User>;
   ping?: Maybe<Scalars['String']['output']>;
   userGet?: Maybe<User>;
@@ -146,6 +147,7 @@ export type MutationResolvers<ContextType = MyContext, ParentType extends Resolv
 };
 
 export type QueryResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  _empty?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   me?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
   ping?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   userGet?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryuserGetArgs, 'id'>>;
