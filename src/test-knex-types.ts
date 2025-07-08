@@ -19,7 +19,7 @@ export async function testKnexTypes(knex: Knex) {
     .where({ id: 1 })
     .update({
       username: 'usuario_atualizado',
-      updated_at: new Date().toISOString()
+      updated_at: new Date()
     });
   
   // Teste de DELETE
