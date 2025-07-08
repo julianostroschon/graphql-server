@@ -1,0 +1,13 @@
+overwrite: true
+schema: './src/graphql/modules/**/*.graphql'
+generates:
+  ./src/generated/:
+    preset: '@eddeee888/gcg-typescript-resolver-files'
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
+    config:
+      useIndexSignature: true
+      contextType: "../context#MyContext"
+hooks:
+  afterOneFileWrite: ['prettier --write "src/generated/**/*.ts"']

@@ -1,0 +1,8 @@
+type Mutation {
+  _empty: String
+}
+
+type Query {
+  _empty: String
+  ping: String!
+}
