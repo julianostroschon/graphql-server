@@ -3,6 +3,7 @@ import { startStandaloneServer } from '@apollo/server/standalone';
 import { type MyContext, createContext } from './context';
 import { resolvers } from './graphql/resolvers';
 import { typeDefs } from './graphql/typedefs';
+import { logger } from './infra/logger';
 
 async function startApolloServer() {
 
@@ -14,13 +15,13 @@ async function startApolloServer() {
 
   // Inicia o servidor Apollo
   const { url } = await startStandaloneServer(server, {
-    context: createContext,
+    context: async (req) => createContext(req),
     listen: { port: 4000 },
   });
 
-  console.log(`🚀 Servidor pronto em ${url}`);
+  logger.info(`🚀 Servidor pronto em ${url}`);
 }
 
 startApolloServer().catch((err) => {
-  console.error('Erro ao iniciar o servidor:', err);
+  logger.error('Erro ao iniciar o servidor:', err);
 });
