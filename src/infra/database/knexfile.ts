@@ -1,26 +1,31 @@
 import { Knex } from 'knex';
 import { join } from 'node:path';
+import env from '../../support/constants';
 
 interface KnexConfig {
   [key: string]: Knex.Config;
 }
 
+const connection = env.DATABASE_URL || {
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT) || 5432,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  ssl: { rejectUnauthorized: false },
+}
+
+
 const config: KnexConfig = {
   development: {
     client: 'pg',
-    connection: {
-      host: process.env.DB_HOST || 'localhost',
-      port: Number(process.env.DB_PORT) || 5432,
-      user: process.env.DB_USER || 'postgres',
-      password: process.env.DB_PASSWORD || 'postgres',
-      database: process.env.DB_NAME || 'graphql_server_dev',
-    },
+    connection,
     migrations: {
-      directory: join(__dirname, 'src/database/migrations'),
+      directory: join(__dirname, './migrations'),
       extension: 'ts',
     },
     seeds: {
-      directory: join(__dirname, 'src/database/seeds'),
+      directory: join(__dirname, './seeds'),
       extension: 'ts',
     },
   },

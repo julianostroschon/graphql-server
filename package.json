@@ -10,6 +10,7 @@
     "codegen:watch": "graphql-codegen --config ./src/codegen/config.yml --watch",
     "migrate:make": "knex migrate:make -x ts",
     "migrate:latest": "knex migrate:latest --knexfile ./src/infra/database/knexfile.ts",
+    "knex": "tsx -r dotenv/config ./node_modules/.bin/knex --knexfile ./src/infra/database/knexfile.ts",
     "migrate:rollback": "knex migrate:rollback --knexfile ./src/infra/database/knexfile.ts",
     "seed:make": "knex seed:make -x ts",
     "seed:run": "knex seed:run --knexfile ./src/infra/database/knexfile.ts"
@@ -28,13 +29,15 @@
     "@types/pg": "^8.15.4",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.1.0",
     "express": "^5.1.0",
     "graphql": "^16.11.0",
     "knex": "^3.1.0",
     "pg": "^8.16.3",
     "pino": "^9.7.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@eddeee888/gcg-typescript-resolver-files": "^0.12.1",

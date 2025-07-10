@@ -4,6 +4,7 @@ import { type MyContext, createContext } from './context';
 import { resolvers } from './graphql/resolvers';
 import { typeDefs } from './graphql/typedefs';
 import { logger } from './infra/logger';
+import env from './support/constants';
 
 async function startApolloServer() {
 
@@ -16,7 +17,7 @@ async function startApolloServer() {
   // Inicia o servidor Apollo
   const { url } = await startStandaloneServer(server, {
     context: async (req) => createContext(req),
-    listen: { port: 4000 },
+    listen: { port: env.PORT },
   });
 
   logger.info(`🚀 Servidor pronto em ${url}`);

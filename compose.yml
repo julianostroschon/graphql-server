@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: projetos-postgres
+    ports:
+      - "${POSTGRES_PORT:-4443}:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    environment:
+      - "${POSTGRES_USER:-root}"
+      - "${POSTGRES_PASSWORD:-root}"
+      - "${POSTGRES_DB:-local}"
+
+volumes:
+  pg-data:
+    driver: local
+
+networks:
+  db_network:
+    driver: bridge

@@ -6,10 +6,19 @@ const logger = pino(
     name: 'partithura-graphql',
     messageKey: 'message',
     level: process.env.LOG_LEVEL || 'info',
-    transport: isDev ? { target: 'pino-pretty' } : undefined,
+    transport: isDev ? { 
+      target: 'pino-pretty',
+      options: {
+        translateTime: 'HH:MM:ss',
+        ignore: 'pid,hostname',
+      }
+    } : undefined,
     formatters: {
       level(label) {
         return { level: label }
+      },
+      log(object) {
+        return { ...object }
       }
     },
     base: {
