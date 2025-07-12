@@ -7,9 +7,9 @@ services:
     volumes:
       - pg-data:/var/lib/postgresql/data
     environment:
-      - "${POSTGRES_USER:-root}"
-      - "${POSTGRES_PASSWORD:-root}"
-      - "${POSTGRES_DB:-local}"
+      POSTGRES_USER: "${POSTGRES_USER:-root}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:-root}"
+      POSTGRES_DB: "${POSTGRES_DB:-local}"
 
 volumes:
   pg-data:

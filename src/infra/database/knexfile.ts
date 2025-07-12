@@ -1,19 +1,21 @@
+import { config as getEnv } from 'dotenv';
 import { Knex } from 'knex';
 import { join } from 'node:path';
-import env from '../../support/constants';
+getEnv();
 
-interface KnexConfig {
-  [key: string]: Knex.Config;
-}
+type KnexConfig = {
+  [K in 'development' | 'production']: Knex.Config;
+};
 
-const connection = env.DATABASE_URL || {
+const connection = process.env.DATABASE_URL || {
   host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT) || 5432,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  ssl: { rejectUnauthorized: false },
-}
+  // ssl: { rejectUnauthorized: false },
+};
+console.log({ connection, env: process.env });
 
 
 const config: KnexConfig = {

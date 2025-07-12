@@ -1,5 +1,11 @@
+input LoginCredentials {
+  password: String!
+  username: String!
+}
+
 type Mutation {
   _empty: String!
+  login(credentials: LoginCredentials!): User!
 }
 
 type Query {

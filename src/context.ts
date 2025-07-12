@@ -13,8 +13,8 @@ interface MyContext {
 }
 
 const createContext = async (res: StandaloneServerContextFunctionArgument): Promise<MyContext> => {
-  const headers = res.req?.headers || {};
-  logger.warn({ headers }, 'headers received in context creation');
+  // const headers = res.req?.headers || {};
+  // logger.warn({ headers }, 'headers received in context creation');
   return {
     database,
     logger,

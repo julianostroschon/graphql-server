@@ -8,7 +8,7 @@ const loadResolvers = () => {
     .filter(dirent => dirent.isDirectory())
     .map(dirent => dirent.name);
 
-  const resolversMap: Record<string, any> = {
+    const resolversMap: Record<string, any> = {
     Query: {},
     Mutation: {},
   };
