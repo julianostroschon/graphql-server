@@ -5,7 +5,9 @@ config()
 const envSchema = z.object({
   PORT: z.coerce.number().min(1000),
   // DATABASE_URL: z.string().url().nullable(),
-  // JWT_SECRET: z.string().min(1),
+  // JWT_SECRET: z.string().min(1).default(process.env.JWT_SECRET || 'a_very_strong_secret_for_development_only'),
+
+  JWT_SECRET: z.string().min(1),
   ENV: z
     .union([
       z.literal('development'),

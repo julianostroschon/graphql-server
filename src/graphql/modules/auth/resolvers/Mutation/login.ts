@@ -1,6 +1,8 @@
 import { ApolloError } from "apollo-server-errors";
 
+import { hash } from "crypto";
 import { sign } from "jsonwebtoken";
+import env from "../../../../../support/constants";
 import type { MutationResolvers } from "./../../../../../generated/types.generated";
 export const login: NonNullable<MutationResolvers["login"]> = async (
   _parent,
@@ -17,9 +19,11 @@ export const login: NonNullable<MutationResolvers["login"]> = async (
     throw new ApolloError("invalidParameter");
   }
   const { password, ...userRaw } = userDb || {};
-  const hashedPassword = passwordRaw;
+  const hashedPassword = await hash('sha512', passwordRaw);
+  passwordRaw;
 
   const isValidPassword = password === hashedPassword;
+  console.log({ isValidPassword, password, hashedPassword });
 
   if (!isValidPassword) {
     logger.warn(`Password not match: ${username}`);
@@ -32,7 +36,7 @@ export const login: NonNullable<MutationResolvers["login"]> = async (
     updatedAt: userRaw.updated_at.toISOString(),
   }
 
-  const token = sign({ userId: user.id }, "your_jwt_secret", {
+  const token = sign({ userId: user.id }, env.JWT_SECRET, {
     expiresIn: "1h",
   });
 
