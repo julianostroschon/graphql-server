@@ -19,6 +19,12 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type Login = {
+  __typename?: 'Login';
+  token: Scalars['String']['output'];
+  user: User;
+};
+
 export type LoginCredentials = {
   password: Scalars['String']['input'];
   username: Scalars['String']['input'];
@@ -27,7 +33,7 @@ export type LoginCredentials = {
 export type Mutation = {
   __typename?: 'Mutation';
   _empty: Scalars['String']['output'];
-  login: User;
+  login: Login;
 };
 
 
@@ -134,8 +140,9 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  LoginCredentials: LoginCredentials;
+  Login: ResolverTypeWrapper<Omit<Login, 'user'> & { user: ResolversTypes['User'] }>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
+  LoginCredentials: LoginCredentials;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
@@ -146,8 +153,9 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  LoginCredentials: LoginCredentials;
+  Login: Omit<Login, 'user'> & { user: ResolversParentTypes['User'] };
   String: Scalars['String']['output'];
+  LoginCredentials: LoginCredentials;
   Mutation: {};
   Query: {};
   ID: Scalars['ID']['output'];
@@ -155,9 +163,15 @@ export type ResolversParentTypes = {
   Boolean: Scalars['Boolean']['output'];
 };
 
+export type LoginResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Login'] = ResolversParentTypes['Login']> = {
+  token?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type MutationResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   _empty?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  login?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationloginArgs, 'credentials'>>;
+  login?: Resolver<ResolversTypes['Login'], ParentType, ContextType, RequireFields<MutationloginArgs, 'credentials'>>;
 };
 
 export type QueryResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
@@ -181,6 +195,7 @@ export type UserResolvers<ContextType = MyContext, ParentType extends ResolversP
 export type UserRoleResolvers = EnumResolverSignature<{ ADMIN?: any, USER?: any }, ResolversTypes['UserRole']>;
 
 export type Resolvers<ContextType = MyContext> = {
+  Login?: LoginResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   User?: UserResolvers<ContextType>;

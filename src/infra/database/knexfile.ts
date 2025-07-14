@@ -15,8 +15,6 @@ const connection = process.env.DATABASE_URL || {
   database: process.env.DB_NAME,
   // ssl: { rejectUnauthorized: false },
 };
-console.log({ connection, env: process.env });
-
 
 const config: KnexConfig = {
   development: {

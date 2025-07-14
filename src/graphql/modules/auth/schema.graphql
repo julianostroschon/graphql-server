@@ -3,6 +3,11 @@ input LoginCredentials {
   password: String!
 }
 
+type Login {
+  user: User!
+  token: String!
+}
+
 extend type Mutation {
-  login(credentials: LoginCredentials!): User!
+  login(credentials: LoginCredentials!): Login!
 }

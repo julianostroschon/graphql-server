@@ -1,3 +1,8 @@
+type Login {
+  token: String!
+  user: User!
+}
+
 input LoginCredentials {
   password: String!
   username: String!
@@ -5,7 +10,7 @@ input LoginCredentials {
 
 type Mutation {
   _empty: String!
-  login(credentials: LoginCredentials!): User!
+  login(credentials: LoginCredentials!): Login!
 }
 
 type Query {
