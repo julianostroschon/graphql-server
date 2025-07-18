@@ -7,23 +7,29 @@ import type { MutationResolvers } from "./../../../../../generated/types.generat
 export const login: NonNullable<MutationResolvers["login"]> = async (
   _parent,
   { credentials },
-  { database, logger },
+  { database, logger }
 ) => {
   const { username, password: passwordRaw } = credentials;
   const userDb = await database("users")
     .where({ username })
-    .first(["id", "username", "email", "created_at", "updated_at", "role", "password"]);
+    .first([
+      "created_at",
+      "updated_at",
+      "username",
+      "password",
+      "email",
+      "role",
+      "id",
+    ]);
 
   if (!userDb) {
     logger.warn(`User not found: ${username}`);
     throw new ApolloError("invalidParameter");
   }
   const { password, ...userRaw } = userDb || {};
-  const hashedPassword = await hash('sha512', passwordRaw);
-  passwordRaw;
+  const hashedPassword = await hash(env.ALGORITHM_ENCRYPT, passwordRaw);
 
   const isValidPassword = password === hashedPassword;
-  console.log({ isValidPassword, password, hashedPassword });
 
   if (!isValidPassword) {
     logger.warn(`Password not match: ${username}`);
@@ -34,7 +40,7 @@ export const login: NonNullable<MutationResolvers["login"]> = async (
     role: userRaw.role, // Ensure role is wrapped as expected
     createdAt: userRaw.created_at.toISOString(),
     updatedAt: userRaw.updated_at.toISOString(),
-  }
+  };
 
   const token = sign({ userId: user.id }, env.JWT_SECRET, {
     expiresIn: "1h",

@@ -1,13 +1,12 @@
-import { ApolloServer } from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
-import { type MyContext, createContext } from './context';
-import { resolvers } from './graphql/resolvers';
-import { typeDefs } from './graphql/typedefs';
-import { logger } from './infra/logger';
-import env from './support/constants';
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
+import { type MyContext, createContext } from "./context";
+import { resolvers } from "./graphql/resolvers";
+import { typeDefs } from "./graphql/typedefs";
+import { logger } from "./infra/logger";
+import env from "./support/constants";
 
 async function startApolloServer() {
-
   // Configuração do Apollo Server
   const server = new ApolloServer<MyContext>({
     resolvers,
@@ -24,5 +23,5 @@ async function startApolloServer() {
 }
 
 startApolloServer().catch((err) => {
-  logger.error('Erro ao iniciar o servidor:', err);
+  logger.error("Erro ao iniciar o servidor:", err);
 });
