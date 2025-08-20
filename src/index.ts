@@ -23,5 +23,5 @@ async function startApolloServer() {
 }
 
 startApolloServer().catch((err) => {
-  logger.error("Erro ao iniciar o servidor:", err);
+  logger.error(err, "Erro ao iniciar o servidor:");
 });

@@ -1,15 +1,33 @@
 {
   "compilerOptions": {
-    "target": "es2020",
+    "typeRoots": ["./types", "./node_modules/@types"],
+    "target": "es2019",
+    "moduleResolution": "node",
     "module": "commonjs",
-    "lib": ["es2020"],
-    "strict": true,
+    "lib": ["es2019"],
+    "sourceMap": true,
     "rootDir": "./src",
     "outDir": "./dist",
-    "esModuleInterop": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "resolveJsonModule": true,
+    "alwaysStrict": true,
+    "removeComments": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "noImplicitReturns": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+    },
+    "rootDirs": ["./src"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/*.test.ts"]
+  "exclude": ["node_modules/", "**/*.test.ts", "src/generated/knex-types.ts"],
+  "include": ["./src/**/*.*"]
 }

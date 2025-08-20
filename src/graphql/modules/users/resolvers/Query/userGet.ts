@@ -5,7 +5,7 @@ export const userGet: NonNullable<QueryResolvers["userGet"]> = async (
   { id },
   { database },
 ) => {
-  const user = await database("users").where({ id }).first();
+  const user = await database("users").where('id', id).first();
 
   if (!user) return null;
 

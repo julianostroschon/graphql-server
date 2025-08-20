@@ -57,11 +57,11 @@ export type QueryuserGetArgs = {
 
 export type User = {
   __typename?: 'User';
-  createdAt: Scalars['String']['output'];
+  createdAt?: Maybe<Scalars['String']['output']>;
   email: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   role: UserRole;
-  updatedAt: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['String']['output']>;
   username: Scalars['String']['output'];
 };
 
@@ -183,11 +183,11 @@ export type QueryResolvers<ContextType = MyContext, ParentType extends Resolvers
 };
 
 export type UserResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
-  createdAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  createdAt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   role?: Resolver<ResolversTypes['UserRole'], ParentType, ContextType>;
-  updatedAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };

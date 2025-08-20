@@ -7,7 +7,7 @@ import type { MutationResolvers } from "./../../../../../generated/types.generat
 export const login: NonNullable<MutationResolvers["login"]> = async (
   _parent,
   { credentials },
-  { database, logger }
+  { database, logger },
 ) => {
   const { username, password: passwordRaw } = credentials;
   const userDb = await database("users")

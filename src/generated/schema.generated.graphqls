@@ -22,11 +22,11 @@ type Query {
 }
 
 type User {
-  createdAt: String!
+  createdAt: String
   email: String!
   id: ID!
   role: UserRole!
-  updatedAt: String!
+  updatedAt: String
   username: String!
 }
 
