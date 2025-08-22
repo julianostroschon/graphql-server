@@ -2,8 +2,8 @@ import { ApolloError } from "apollo-server-errors";
 
 import { hash } from "crypto";
 import { sign } from "jsonwebtoken";
+import type { MutationResolvers } from "~types";
 import env from "../../../../../support/constants";
-import type { MutationResolvers } from "./../../../../../generated/types.generated";
 export const login: NonNullable<MutationResolvers["login"]> = async (
   _parent,
   { credentials },

@@ -1,9 +1,11 @@
-import type { QueryResolvers } from "./../../../../../generated/types.generated";
+import type { QueryResolvers } from "~types";
 
 export const usersLoad: NonNullable<QueryResolvers["usersLoad"]> = async (
   _parent,
   _arg,
   { database },
 ) => {
-  return await database("users");
+  const users = await database("users")
+
+  return users
 };

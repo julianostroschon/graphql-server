@@ -1,4 +1,4 @@
-import type { QueryResolvers } from "./../../../../../generated/types.generated";
+import type { QueryResolvers } from "~types";
 
 export const me: NonNullable<QueryResolvers["me"]> = async (
   _parent,
@@ -11,9 +11,5 @@ export const me: NonNullable<QueryResolvers["me"]> = async (
 
   if (!userData) return null;
 
-  return {
-    ...userData,
-    createdAt: userData.created_at.toISOString(),
-    updatedAt: userData.updated_at.toISOString(),
-  };
+  return userData;
 };

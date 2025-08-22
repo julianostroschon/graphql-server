@@ -1,7 +1,7 @@
-import { Resolvers } from '../../../../generated/graphql';
-import { usersLoad } from './Query/usersLoad';
-import { userGet } from './Query/userGet';
+import { Resolvers } from '~types';
 import { me } from './Query/me';
+import { userGet } from './Query/userGet';
+import { usersLoad } from './Query/usersLoad';
 
 export const resolvers: Resolvers = {
   Query: {

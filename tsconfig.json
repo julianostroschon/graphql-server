@@ -23,6 +23,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
+      "~types": [
+        "./src/generated/types.generated.ts"
+      ],
+      "~resolvers": ["./src/generated/resolvers.generated.ts"],
+      "~typeDefs": ["./src/generated/typeDefs.generated.ts"]
     },
     "rootDirs": ["./src"],
     "experimentalDecorators": true,

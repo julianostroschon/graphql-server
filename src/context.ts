@@ -3,10 +3,11 @@ import type { IncomingMessage } from "http";
 import { verify } from "jsonwebtoken";
 import type { Knex } from "knex";
 import { Logger } from "pino";
-import database from "./infra/database/connection";
-import { User } from "./infra/database/types";
-import { logger } from "./infra/logger";
-import env from "./support/constants";
+
+import database from "@/infra/database/connection";
+import { User } from "@/infra/database/types";
+import { logger } from "@/infra/logger";
+import env from "@/support/constants";
 
 interface MyContext {
   database: Knex;

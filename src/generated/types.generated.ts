@@ -20,7 +20,6 @@ export type Scalars = {
 };
 
 export type Login = {
-  __typename?: 'Login';
   token: Scalars['String']['output'];
   user: User;
 };
@@ -31,7 +30,6 @@ export type LoginCredentials = {
 };
 
 export type Mutation = {
-  __typename?: 'Mutation';
   _empty: Scalars['String']['output'];
   login: Login;
 };
@@ -42,7 +40,6 @@ export type MutationloginArgs = {
 };
 
 export type Query = {
-  __typename?: 'Query';
   _empty: Scalars['String']['output'];
   me?: Maybe<User>;
   ping?: Maybe<Scalars['String']['output']>;
@@ -56,7 +53,6 @@ export type QueryuserGetArgs = {
 };
 
 export type User = {
-  __typename?: 'User';
   createdAt?: Maybe<Scalars['String']['output']>;
   email: Scalars['String']['output'];
   id: Scalars['ID']['output'];

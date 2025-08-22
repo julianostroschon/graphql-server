@@ -9,8 +9,11 @@ generates:
     config:
       useIndexSignature: true
     presetConfig:
+      resolverTypesPath: ./types.generated.ts
       typesPluginsConfig:
         contextType: "../context#MyContext"
+        optionalResolveType: false,
+        skipTypename: true,
   
   ./src/generated/knex-types.ts:
     plugins:
